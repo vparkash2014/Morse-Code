@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel='stylesheet' href="css/main.css">
+    <link rel='stylesheet' href="css/body.css">
+    <title>Morse Translator</title>
+</head>
+<body>
+    <main class="main">
+        <div class="main__content">
+            <h1 class="main__title">Translate a Message</h1>
+            <form class="main__form" id="translator" >
+                <div class="main__input-label">
+                    <label for="input">Input Message:</label>
+                </div>
+                <div>
+                    <textarea name="input" id="input" class="main__textarea" rows="15" cols="70" placeholder="Type your message here: normal text or Morse code using '.', '_' or '-', separating letters by spaces and words with '/'." required></textarea>
+                </div>
+                <div class="main__btn">
+                    <input type="submit" class="main__btn-single" value="Submit">
+                    <input type="reset" class="main__btn-single" value="Clear">
+                </div>
+            </form>
+            <p id='outputTitle'></p>
+            <div class="main__output" id="mainOutput">
+                <p id="output"></p>
+            </div>
+        </div>
+    </main>
+    
+    <script type='module' src="scripts/main.js"></script>
+</body>
+</html>
