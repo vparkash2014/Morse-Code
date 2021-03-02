@@ -1,24 +1,31 @@
-import { alphabet, morse } from './classes.js';
+import { alphabet, morse } from './objects.js';
 // uncomment the following input if you want to test the code
 // import { englishStr, morseStr } from './test.js'
+const translatorForm = document.getElementById('translator');
 
-const morseToEnglish = (morseStr) => {
+const morseToEnglish = (morseStr, languageObj = morse) => {
     return morseStr
         .split(' ')
         .map(char => {
-            return morse[char];
+            return languageObj[char];
         })
         .join('');
 }
 
-const englishToMorse = (englishStr) => {
+const englishToMorse = (englishStr, languageObj = alphabet) => {
     return englishStr
         .toLowerCase()
         .split('')
         .map(char => {
-            return alphabet[char];
+            return languageObj[char];
         })
         .join(' ');
+}
+
+const printOutput = (outputStr) => {
+    document.getElementById('output').innerHTML = outputStr;
+    document.getElementById('outputTitle').innerHTML = "Output Message:";
+    document.getElementById('mainOutput').style.border = "1px solid black";
 }
 
 const runTranslator = (event) => {
@@ -27,45 +34,21 @@ const runTranslator = (event) => {
     const inputStr = document.getElementById("input").value;
     let outputStr = '';
 
-    if (inputStr.match(/[a-zA-Z]/g)) {
+    if (inputStr.match(/[a-zA-Z0-9]/g)) {
         outputStr =  englishToMorse(inputStr);
     } else {
         outputStr =  morseToEnglish(inputStr);
-    }
-    
-    const printOutput = (outputStr) => {
-        const outputHTML = document.getElementById('output');
-        const outputTitle = document.getElementById('outputTitle');
-        const outputBox = document.getElementById('mainOutput');
-
-        outputHTML.innerHTML = outputStr;
-        outputTitle.innerHTML = "Output Message:";
-        outputTitle.style.marginBottom = "5px";
-        outputTitle.style.fontWeight = "bold";
-        outputTitle.style.fontSize = "20px";
-        outputTitle.style.marginTop = "30px";
-        outputBox.style.border = "1px solid black";
-        
     }
     
     printOutput(outputStr)
 }
 
 const clearMessage = (event) => {
-    const outputHTML = document.getElementById('output');
-    const outputTitle = document.getElementById('outputTitle');
-    const outputBox = document.getElementById('mainOutput');
-
-    outputHTML.innerHTML = "";
-    outputTitle.innerHTML = "";
-    outputBox.style.border = null;
+    document.getElementById('output').innerHTML = "";
+    document.getElementById('outputTitle').innerHTML = "";
+    document.getElementById('mainOutput').style.border = null;
 }
 
 
-const translatorForm = document.getElementById('translator');
 translatorForm.addEventListener("submit", runTranslator);
 translatorForm.addEventListener("reset", clearMessage);
-
-
-
-
